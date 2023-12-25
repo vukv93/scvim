@@ -78,6 +78,10 @@ if exists("g:scSplitSize")
   let s:scSplitSize = g:scSplitSize
 endif
 
+let s:scSplit = "off"
+if exists("g:scSplit")
+    let s:scSplit = g:scSplit
+endif
 
 let s:scTerminalBuffer = "off"
 if exists("g:scTerminalBuffer")
@@ -240,6 +244,7 @@ function SClangStart(...)
   let l:screen = exists('$STY')
   let l:splitDir = (a:0 == 2) ? a:1 : s:scSplitDirection
   let l:splitSize = (a:0 == 2) ? a:2 : s:scSplitSize
+  let l:split = (a:0 == 2) ? "on" : s:scSplit
   if s:TerminalEnabled()
     let l:term = ":term "
     if !has("nvim")
@@ -267,11 +272,7 @@ function SClangStart(...)
       let l:splitSize = 100 - l:splitSize
       let l:splitDir = (l:splitDir == "v") ? "" : " -v"
       let l:screenName = system("echo -n $STY")
-      call system("screen -S " . l:screenName . " -X split" . l:splitDir)
-      call system("screen -S " . l:screenName . " -X eval focus screen focus")
-      call system("screen -S " . l:screenName . " -X at 1# exec " . s:sclangPipeApp)
-      call system("screen -S " . l:screenName . " -X resize " . l:splitSize . '%')
-      call system("screen -S " . l:screenName . " -X bindkey -k k5")
+      call system("screen -S " . l:screenName . " -X screen :sclang " . s:sclangPipeApp)
     endif
   else
     call system(s:sclangTerm . " " . s:sclangPipeApp . "&")

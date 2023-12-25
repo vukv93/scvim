@@ -29,25 +29,28 @@ au Filetype supercollider let b:match_words = '(:),[:],{:}'
 
 " key bindings
 
-au Filetype supercollider nnoremap <buffer> <F5> :call SClang_block()<CR>
-au Filetype supercollider inoremap <buffer> <F5> :call SClang_block()<CR>a
-au Filetype supercollider vnoremap <buffer> <F5> :call SClang_send()<CR>
+au Filetype supercollider nnoremap <buffer> <leader>st :call SClang_block()<CR>
+au Filetype supercollider vnoremap <buffer> <leader>st :call SClang_send()<CR>
+au Filetype supercollider inoremap <buffer> <leader>st <Esc>:call SClang_block()<CR>a
 
-au Filetype supercollider vnoremap <buffer> <F6> :call SClang_line()<CR>
-au Filetype supercollider nnoremap <buffer> <F6> :call SClang_line()<CR>
-au Filetype supercollider inoremap <buffer> <F6> :call SClang_line()<CR>a
-
-au Filetype supercollider nnoremap <buffer> <F12> :call SClangHardstop()<CR>
+au Filetype supercollider nnoremap <buffer> <leader>ss :call SClang_line()<CR>
+au Filetype supercollider vnoremap <buffer> <leader>ss :call SClang_line()<CR>
+au Filetype supercollider inoremap <buffer> <leader>ss <Esc>:call SClang_line()<CR>a
+au Filetype supercollider nnoremap <buffer> <leader>rr :call SClangStart()<CR>
+au Filetype supercollider nnoremap <buffer> <leader>rs :call SClangHardstop()<CR>
 
 au Filetype supercollider nnoremap <leader>sk :SClangRecompile<CR>
 au Filetype supercollider nnoremap <buffer>K :call SChelp(expand('<cword>'))<CR>
-au Filetype supercollider inoremap <C-Tab> :call SCfindArgs()<CR>a
+au Filetype supercollider inoremap <C-Tab> <Esc>:call SCfindArgs()<CR>a
 au Filetype supercollider nnoremap <C-Tab> :call SCfindArgs()<CR>
 au Filetype supercollider vnoremap <C-Tab> :call SCfindArgsFromSelection()<CR>
 
+
 " DEPRECATED
-au Filetype supercollider nnoremap <leader>sd yiw :call SChelp(""")<CR>
-au Filetype supercollider nnoremap <leader>sj yiw :call SCdef(""")<CR>
-au Filetype supercollider nnoremap <leader>si yiw :call SCimplementation(""")<CR>
-au Filetype supercollider nnoremap <leader>sr yiw :call SCreference(""")<CR>
+if 0
+    au Filetype supercollider nnoremap <leader>sd yiw :call SChelp(""")<CR>
+    au Filetype supercollider nnoremap <leader>sj yiw :call SCdef(""")<CR>
+    au Filetype supercollider nnoremap <leader>si yiw :call SCimplementation(""")<CR>
+    au Filetype supercollider nnoremap <leader>sr yiw :call SCreference(""")<CR>
+endif
 
