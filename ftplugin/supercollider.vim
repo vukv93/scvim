@@ -73,7 +73,7 @@ if exists("g:scSplitDirection")
   let s:scSplitDirection = g:scSplitDirection
 endif
 
-let s:scSplitSize = 30
+let s:scSplitSize = 15
 if exists("g:scSplitSize")
   let s:scSplitSize = g:scSplitSize
 endif
@@ -253,10 +253,9 @@ function SClangStart(...)
     let l:isVertical = l:splitDir == "v"
     let l:splitCmd = (l:isVertical) ? "vsplit" : "split"
     let l:resizeCmd = (l:isVertical) ? "vertical resize " : "resize "
-    vsplit
-    wincmd w
+    exec l:splitCmd
     call s:KillSClangBuffer()
-    exec "vertical resize " .(l:splitSize  * 2) ."%"
+    exec l:resizeCmd . l:splitSize
     exec "set wfw"
     exec "set wfh"
     exec l:term .s:sclangPipeApp
