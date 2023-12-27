@@ -38,7 +38,8 @@ au Filetype supercollider vnoremap <buffer> <LocalLeader>s :call SClang_send()<C
 au Filetype supercollider nnoremap <buffer> <LocalLeader>ss :call SClang_line()<CR>
 au Filetype supercollider vnoremap <buffer> <LocalLeader>s :call SClang_line()<CR>
 au Filetype supercollider nnoremap <buffer> <LocalLeader>rr :call SClangStart()<CR>
-au Filetype supercollider nnoremap <buffer> <LocalLeader>rs :call SClangHardstop()<CR>
+au Filetype supercollider nnoremap <buffer> <LocalLeader>rs :call SClangKillIfStarted()<CR>
+au Filetype supercollider nnoremap <buffer> <LocalLeader>re :call SClangHardstop()<CR>
 
 au Filetype supercollider nnoremap <LocalLeader>sk :SClangRecompile<CR>
 au Filetype supercollider nnoremap <buffer>K :call SChelp(expand('<cword>'))<CR>
